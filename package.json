@@ -1,0 +1,44 @@
+{
+  "name": "tracktics",
+  "version": "1.0.0",
+  "description": "Framework-agnostic, pluggable dispatcher for tracking analytics data",
+  "main": "index.js",
+  "scripts": {
+    "lint": "jshint .",
+    "test": "karma start",
+    "validate": "npm run lint && npm test && cat ./coverage/Phantom*/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jimf/tracktics"
+  },
+  "keywords": [
+    "analytics",
+    "tracking",
+    "event tracking",
+    "page tracking",
+    "google analytics",
+    "google tag manager",
+    "mixpanel",
+    "kissmetrics"
+  ],
+  "author": "Jim Fitzpatrick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jimf/tracktics/issues"
+  },
+  "homepage": "https://github.com/jimf/tracktics",
+  "devDependencies": {
+    "browserify-istanbul": "^0.2.1",
+    "coveralls": "^2.11.2",
+    "jasmine-core": "^2.3.4",
+    "jquery": "^2.1.4",
+    "jshint": "^2.7.0",
+    "karma": "^0.12.36",
+    "karma-browserify": "^4.2.1",
+    "karma-coverage": "^0.4.2",
+    "karma-jasmine": "^0.3.5",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "phantomjs": "^1.9.17"
+  }
+}
