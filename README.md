@@ -162,13 +162,15 @@ The only required attribute for event delegation to function,
 `data-tracktics-on` is used to identify DOM elements of interest and specify
 what DOM event type should be listened to for the given element. Valid values
 for this attribute include "click", "mouseup", and "mousedown". If no value is
-specified, "click" is the default behavior.
+specified, "click" is the default behavior. Provider plugin `trackEvent`
+functions will receive this value as the first argument.
 
 ### `data-tracktics-event`
 
 Use this attribute to manually specify the event name that gets dispatched to
 `trackEvent`. If this attribute is missing, the DOM element's innerText is used
-instead.
+instead. Event data will be passed along to teh registered provider plugins via
+the `event` key in the `options` argument.
 
 ### `data-tracktics-*`
 
@@ -197,7 +199,8 @@ with the exact same data that was passed to the tracker's `trackPage` method.
 Vendor-specific handler for event tracking. Event tracking can be done manually
 via the tracker's `trackEvent` method, or declaratively via `data-tracktics-*`
 attributes. This method will be called on registered provider plugins with the
-event name and any optional associated data for the event.
+DOM event name (click/mouseup/mousedown) and any optional associated data for
+the event.
 
 ## License
 
