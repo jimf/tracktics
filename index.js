@@ -62,8 +62,7 @@ function isTrackticsAttr(attr) {
  */
 function isExtraDataAttr(attr) {
     return isTrackticsAttr(attr) &&
-        attr.name !== ATTR_PREFIX + 'on' &&
-        attr.name !== ATTR_PREFIX + 'event';
+        attr.name !== ATTR_PREFIX + 'on';
 }
 
 /**
@@ -99,10 +98,16 @@ function toAttrsObject(attrs, attr) {
  * @return {object}
  */
 function getTrackticsData(el) {
-    return Array.prototype.slice.call(el.attributes)
+    var data = Array.prototype.slice.call(el.attributes)
         .filter(isExtraDataAttr)
         .map(serializeAttr)
         .reduce(toAttrsObject, {});
+
+    if (typeof data.event === 'undefined') {
+        data.event = el.innerText;
+    }
+
+    return data;
 }
 
 /**
@@ -134,7 +139,7 @@ function genEventHandler(providers, eventName) {
         if (hasTracking(e.target, eventName)) {
             dispatch(providers, {
                 type: 'event',
-                data: e.target.getAttribute(ATTR_PREFIX + 'event') || e.target.innerText,
+                data: eventName,
                 extra: getTrackticsData(e.target)
             });
         }

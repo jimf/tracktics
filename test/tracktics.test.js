@@ -69,10 +69,10 @@ describe('Tracktics', function() {
 
             it('should dispatch click events to providers with expected data', function() {
                 [provider1, provider3].forEach(function(provider) {
-                    expect(provider.trackEvent).toHaveBeenCalledWith('Foo', {});
-                    expect(provider.trackEvent).toHaveBeenCalledWith('Bar', {});
-                    expect(provider.trackEvent).toHaveBeenCalledWith('Baz', { baz: 'foobarbaz' });
-                    expect(provider.trackEvent).toHaveBeenCalledWith('Baz', { fooBar: 'quux' });
+                    expect(provider.trackEvent).toHaveBeenCalledWith('click', { event: 'Foo' });
+                    expect(provider.trackEvent).toHaveBeenCalledWith('click', { event: 'Bar' });
+                    expect(provider.trackEvent).toHaveBeenCalledWith('click', { event: 'Baz', baz: 'foobarbaz' });
+                    expect(provider.trackEvent).toHaveBeenCalledWith('click', { event: 'Baz', fooBar: 'quux' });
                 });
             });
 
@@ -118,10 +118,10 @@ describe('Tracktics', function() {
 
             it('should dispatch mouseup events to providers with expected data', function() {
                 [provider1, provider3].forEach(function(provider) {
-                    expect(provider.trackEvent).toHaveBeenCalledWith('Foo', {});
-                    expect(provider.trackEvent).toHaveBeenCalledWith('Bar', {});
-                    expect(provider.trackEvent).toHaveBeenCalledWith('Baz', { baz: 'foobarbaz' });
-                    expect(provider.trackEvent).toHaveBeenCalledWith('Baz', { fooBar: 'quux' });
+                    expect(provider.trackEvent).toHaveBeenCalledWith('mouseup', { event: 'Foo' });
+                    expect(provider.trackEvent).toHaveBeenCalledWith('mouseup', { event: 'Bar' });
+                    expect(provider.trackEvent).toHaveBeenCalledWith('mouseup', { event: 'Baz', baz: 'foobarbaz' });
+                    expect(provider.trackEvent).toHaveBeenCalledWith('mouseup', { event: 'Baz', fooBar: 'quux' });
                 });
             });
 
@@ -172,10 +172,10 @@ describe('Tracktics', function() {
 
             it('should dispatch mousedown events to providers with expected data', function() {
                 [provider1, provider3].forEach(function(provider) {
-                    expect(provider.trackEvent).toHaveBeenCalledWith('Foo', {});
-                    expect(provider.trackEvent).toHaveBeenCalledWith('Bar', {});
-                    expect(provider.trackEvent).toHaveBeenCalledWith('Baz', { baz: 'foobarbaz' });
-                    expect(provider.trackEvent).toHaveBeenCalledWith('Baz', { fooBar: 'quux' });
+                    expect(provider.trackEvent).toHaveBeenCalledWith('mousedown', { event: 'Foo' });
+                    expect(provider.trackEvent).toHaveBeenCalledWith('mousedown', { event: 'Bar' });
+                    expect(provider.trackEvent).toHaveBeenCalledWith('mousedown', { event: 'Baz', baz: 'foobarbaz' });
+                    expect(provider.trackEvent).toHaveBeenCalledWith('mousedown', { event: 'Baz', fooBar: 'quux' });
                 });
             });
 
