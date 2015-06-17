@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "jshint .",
     "test": "karma start",
-    "validate": "npm run lint && npm test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "validate": "npm run lint && npm test && ls && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
