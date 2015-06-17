@@ -16,6 +16,10 @@ Install using npm:
 
     $ npm install tracktics
 
+## Browser Support
+
+IE9+
+
 ## Examples
 
 ### Basic Usage
@@ -66,6 +70,12 @@ $(document).ready(function() {
     Backbone.history.start();
 });
 ```
+
+## Supported Analytics Providers
+
+ * Google Analytics ([tracktics-google-analytics](https://github.com/jimf/tracktics-google-analytics))
+ * KISSmetrics ([tracktics-kissmetrics](https://github.com/jimf/tracktics-kissmetrics))
+ * Mixpanel ([tracktics-mixpanel](https://github.com/jimf/tracktics-mixpanel))
 
 ## API
 
