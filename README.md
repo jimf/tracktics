@@ -34,7 +34,7 @@ var $ = require('jquery'),
     tracker = tracktics();
 
 // Register the Google Analytics plugin.
-tracker.use(require('tracktics-google-analytics'));
+tracker.use(require('tracktics-google-analytics')());
 
 $(document).ready(function() {
     // Add event listeners for mouse events on elements that have had
@@ -57,7 +57,7 @@ var $ = require('jquery'),
     tracker = tracktics(),
     app = require('./app');
 
-tracker.use(require('tracktics-google-analytics'));
+tracker.use(require('tracktics-google-analytics')());
 
 $(document).ready(function() {
     app.init();
