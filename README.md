@@ -169,7 +169,7 @@ functions will receive this value as the first argument.
 
 Use this attribute to manually specify the event name that gets dispatched to
 `trackEvent`. If this attribute is missing, the DOM element's innerText is used
-instead. Event data will be passed along to teh registered provider plugins via
+instead. Event data will be passed along to the registered provider plugins via
 the `event` key in the `options` argument.
 
 ### `data-tracktics-*`
