@@ -104,7 +104,7 @@ function getTrackticsData(el) {
         .reduce(toAttrsObject, {});
 
     if (typeof data.event === 'undefined') {
-        data.event = el.innerText;
+        data.event = el.innerText.trim();
     }
 
     return data;
@@ -118,11 +118,12 @@ function getTrackticsData(el) {
  * @return {boolean}
  */
 function hasTracking(el, eventName) {
+    if (!el.getAttribute) { return false; }
     var attrValue = el.getAttribute(ATTR_PREFIX + 'on');
 
     return el.hasAttribute(ATTR_PREFIX + 'on') &&
         eventName === 'click' ?
-            (attrValue === 'click' || attrValue === '') :
+            (attrValue === 'click' || !attrValue) :
             attrValue === eventName;
 }
 
@@ -136,11 +137,17 @@ function hasTracking(el, eventName) {
  */
 function genEventHandler(providers, eventName) {
     return function(e) {
-        if (hasTracking(e.target, eventName)) {
+        var el = e.target;
+
+        while (el && !hasTracking(el, eventName)) {
+            el = el.parentNode;
+        }
+
+        if (el && hasTracking(el, eventName)) {
             dispatch(providers, {
                 type: 'event',
                 data: eventName,
-                extra: getTrackticsData(e.target)
+                extra: getTrackticsData(el)
             });
         }
     };

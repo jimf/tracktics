@@ -53,18 +53,27 @@ describe('Tracktics', function() {
 
         describe('click events', function() {
 
-            beforeEach(function() {
+            beforeEach(function(done) {
                 $('body').html([
-                    '<button data-tracktics-on>Foo</button>',
-                    '<button data-tracktics-on data-tracktics-event="Bar">Foo</button>',
-                    '<button data-tracktics-on="click" data-tracktics-baz="foobarbaz">Baz</button>',
-                    '<button data-tracktics-on="click" data-tracktics-foo-bar="quux">Baz</button>',
-                    '<button>No Tracking</button>'
+                    '<button data-tracktics-on><div class="inner">Foo</div></button>',
+                    '<button data-tracktics-on data-tracktics-event="Bar"><div class="inner">Foo</div></button>',
+                    '<button data-tracktics-on="click" data-tracktics-baz="foobarbaz"><div class="inner">Baz</div></button>',
+                    '<button data-tracktics-on="click" data-tracktics-foo-bar="quux"><div class="inner">Baz</div></button>',
+                    '<button><div class="inner">No Tracking</div></button>'
                 ].join('\n'));
 
                 tracker.bind();
 
-                $('button').each(function() { $(this).click(); });
+                $('.inner').each(function() {
+                    var evt = document.createEvent('MouseEvent');
+                    evt.initEvent('click', true, true);
+
+                    this.dispatchEvent(evt);
+                });
+
+                setTimeout(function() {
+                    done();
+                }, 100);
             });
 
             it('should dispatch click events to providers with expected data', function() {
@@ -84,7 +93,7 @@ describe('Tracktics', function() {
                     provider1.trackEvent.calls.reset();
                     provider3.trackEvent.calls.reset();
 
-                    $('button').each(function() { $(this).click(); });
+                    $('.inner').each(function() { $(this).click(); });
                 });
 
                 it('should no longer dispatch click events', function() {
@@ -99,16 +108,16 @@ describe('Tracktics', function() {
 
             beforeEach(function() {
                 $('body').html([
-                    '<button data-tracktics-on="mouseup">Foo</button>',
-                    '<button data-tracktics-on="mouseup" data-tracktics-event="Bar">Foo</button>',
-                    '<button data-tracktics-on="mouseup" data-tracktics-baz="foobarbaz">Baz</button>',
-                    '<button data-tracktics-on="mouseup" data-tracktics-foo-bar="quux">Baz</button>',
-                    '<button>No Tracking</button>'
+                    '<button data-tracktics-on="mouseup"><div class="inner">Foo</div></button>',
+                    '<button data-tracktics-on="mouseup" data-tracktics-event="Bar"><div class="inner">Foo</div></button>',
+                    '<button data-tracktics-on="mouseup" data-tracktics-baz="foobarbaz"><div class="inner">Baz</div></button>',
+                    '<button data-tracktics-on="mouseup" data-tracktics-foo-bar="quux"><div class="inner">Baz</div></button>',
+                    '<button><div class="inner">No Tracking</div></button>'
                 ].join('\n'));
 
                 tracker.bind();
 
-                $('button').each(function() {
+                $('.inner').each(function() {
                     var evt = document.createEvent('MouseEvent');
                     evt.initEvent('mouseup', true, true);
 
@@ -133,7 +142,7 @@ describe('Tracktics', function() {
                     provider1.trackEvent.calls.reset();
                     provider3.trackEvent.calls.reset();
 
-                    $('button').each(function() {
+                    $('.inner').each(function() {
                         var evt = document.createEvent('MouseEvent');
                         evt.initEvent('mouseup', true, true);
 
@@ -153,16 +162,16 @@ describe('Tracktics', function() {
 
             beforeEach(function() {
                 $('body').html([
-                    '<button data-tracktics-on="mousedown">Foo</button>',
-                    '<button data-tracktics-on="mousedown" data-tracktics-event="Bar">Foo</button>',
-                    '<button data-tracktics-on="mousedown" data-tracktics-baz="foobarbaz">Baz</button>',
-                    '<button data-tracktics-on="mousedown" data-tracktics-foo-bar="quux">Baz</button>',
-                    '<button>No Tracking</button>'
+                    '<button data-tracktics-on="mousedown"><div class="inner">Foo</div></button>',
+                    '<button data-tracktics-on="mousedown" data-tracktics-event="Bar"><div class="inner">Foo</div></button>',
+                    '<button data-tracktics-on="mousedown" data-tracktics-baz="foobarbaz"><div class="inner">Baz</div></button>',
+                    '<button data-tracktics-on="mousedown" data-tracktics-foo-bar="quux"><div class="inner">Baz</div></button>',
+                    '<button><div class="inner">No Tracking</div></button>'
                 ].join('\n'));
 
                 tracker.bind();
 
-                $('button').each(function() {
+                $('.inner').each(function() {
                     var evt = document.createEvent('MouseEvent');
                     evt.initEvent('mousedown', true, true);
 
@@ -187,7 +196,7 @@ describe('Tracktics', function() {
                     provider1.trackEvent.calls.reset();
                     provider3.trackEvent.calls.reset();
 
-                    $('button').each(function() {
+                    $('.inner').each(function() {
                         var evt = document.createEvent('MouseEvent');
                         evt.initEvent('mousedown', true, true);
 
